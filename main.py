@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
-@app.get("/rand")
+@app.get("/")
 async def rand_Image():
     images = os.listdir("images/")
 
