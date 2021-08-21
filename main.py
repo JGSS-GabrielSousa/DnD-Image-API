@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 directories = [
-    "images/monster/"
+    "images/monster/",
 ]
 
 
@@ -46,8 +46,6 @@ async def return_image(query: str):
 @app.get("/monster/id:{id_value}")
 async def return_monster_by_id(id_value: int):
     images = os.listdir("images/monster/")
-
-    print(images)
 
     if(id_value < len(images)):
         path = "images/monster/"+images[id_value]
