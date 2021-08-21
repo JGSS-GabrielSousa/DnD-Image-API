@@ -5,32 +5,53 @@ from fastapi.responses import FileResponse
 
 app = FastAPI()
 
+directories = [
+    "images/monster/",
+    "images/test/"
+]
+
+
 @app.get("/")
-async def rand_Image():
-    images = os.listdir("images/")
+async def index_of_images():
+    files = {}
 
-    imageID = random.randint(0, len(images)-1)
-    path = "images/"+images[imageID]
-    return FileResponse(path)
+    for i in directories:
+        dirFiles = os.listdir(i)
+        dirFiles = [j[:-4] for j in dirFiles] #without file format
 
+        files[i[7:-1]] = dirFiles #without images folder
 
-@app.get("/index")
-async def index_of_archives():
-    images = os.listdir("images/")
-    
-    return images
+    return files
 
 
 @app.get("/{query}")
-async def specific_Image(query: str):
+async def return_image(query: str):
+    found = False
     query = query.lower()
-    images = os.listdir("images/")
+    query += ".png"
 
-    if query+".png" in images:
-        query += ".png"
-        path = "images/"+query
-    elif query.isdigit():
-        path = "images/"+images[int(query) % len(images)]
+    for i in directories:
+        folderFiles = os.listdir(i)
+
+        if query in folderFiles:
+            path = i+query
+            found = True
+            break
+
+    if found:
+        return FileResponse(path)
     else:
         raise HTTPException(status_code=404, detail="404: Item not found")
-    return FileResponse(path)
+
+
+@app.get("/monster/id:{id_value}")
+async def return_monster_by_id(id_value: int):
+    images = os.listdir("images/monster/")
+
+    print(images)
+
+    if(id_value < len(images)):
+        path = "images/monster/"+images[id_value]
+        return FileResponse(path)
+    else:
+        raise HTTPException(status_code=404, detail="404: Item not found")
