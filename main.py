@@ -6,8 +6,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 directories = [
-    "images/monster/",
-    "images/test/"
+    "images/monster/"
 ]
 
 
