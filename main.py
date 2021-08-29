@@ -17,6 +17,7 @@ async def index_of_images():
     for i in directories:
         dirFiles = os.listdir(i)
         dirFiles = [j[:-4] for j in dirFiles] #without file format
+        dirFiles.sort()
 
         files[i[7:-1]] = dirFiles #without images folder
 
@@ -43,12 +44,16 @@ async def return_image(query: str):
         raise HTTPException(status_code=404, detail="404: Item not found")
 
 
-@app.get("/monster/id:{id_value}")
-async def return_monster_by_id(id_value: int):
-    images = os.listdir("images/monster/")
+@app.get("/{directory}/id:{id_value}")
+async def return_by_id(directory: str, id_value: int):
+    path = "images/"+directory+"/"
+    try:
+        images = os.listdir(path)
+    except:
+        raise HTTPException(status_code=404, detail="404: Item not found")
 
     if(id_value < len(images)):
-        path = "images/monster/"+images[id_value]
+        path += images[id_value]
         return FileResponse(path)
     else:
         raise HTTPException(status_code=404, detail="404: Item not found")
