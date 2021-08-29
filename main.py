@@ -17,6 +17,7 @@ async def index_of_images():
     for i in directories:
         dirFiles = os.listdir(i)
         dirFiles = [j[:-4] for j in dirFiles] #without file format
+        dirFiles.sort()
 
         files[i[7:-1]] = dirFiles #without images folder
 
