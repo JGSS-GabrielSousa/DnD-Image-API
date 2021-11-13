@@ -9,7 +9,7 @@
 This branch hosts images on github itself, which can be downloaded or used in applications.
  
 * The maximum size of the images is 500 KB 
-* All are .png with transparent background
+* All are .png, preferably with transparent background
 
 </br>
 
