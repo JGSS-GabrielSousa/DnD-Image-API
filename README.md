@@ -1,4 +1,4 @@
-# DnD-Image-API
+# RPG-Image-API
  
  This repository splits into two branches.
  
