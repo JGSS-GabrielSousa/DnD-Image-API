@@ -8,8 +8,8 @@
  
 This branch hosts images on github itself, which can be downloaded or used in applications.
  
-* The maximum size of the images is 500 KB 
-* All are .png, preferably with transparent background
+* The maximum size of the images is 100 KB 
+* All are .webp with transparent background
 
 </br>
 
