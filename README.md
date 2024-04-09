@@ -22,7 +22,3 @@ This branch hosts images on github itself, which can be downloaded or used in ap
 </br>
 
 This branch is a prototype of an Image API made with FastAPI. This app will not have all the images and they will eventually be out of date, as the app is just a proof of concept.
-
-Check on: https://dnd-image-api.herokuapp.com
-
-"/docs" to see the documentation
